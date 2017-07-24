@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主要是展示最基础的插件</title>
+    <link rel="stylesheet" href="3rd/leaflet.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            width: 1024%;
+            height: 600px
+        }
+    </style>
+</head>
+<body>
+<!-- 注释模块 -->
+<div class="container">
+    <div id="map">
+
+    </div>
+</div>
+<!-- /注释模块 -->
+</body>
+</html>
+
+<script src="3rd/leaflet-src.js"></script>
+<script src="leaflet.watermark/js/wartermark.js"></script>
+<script>
+
+	// add OpenStreetMap layer
+	var layerOSM = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		attribution: '&copy; Map Data <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	});
+
+
+
+
+	// initialize map
+	var map = new L.Map('map', {
+		minZoom: 1,
+		maxZoom: 18,
+		layers: [layerOSM]
+	}).setView([51.083, 28.189], 10);
+
+	var baseMaps = {
+		"OpenStreetMap": layerOSM
+	};
+	L.control.layers(baseMaps, null, {collapsed: false}).addTo(map);
+
+	L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+</script>
